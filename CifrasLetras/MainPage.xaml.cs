@@ -1,25 +1,60 @@
-﻿namespace CifrasLetras;
+﻿using CommunityToolkit.Maui.Markup;
+
+namespace CifrasLetras;
+
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+
 
 	public MainPage()
 	{
-		InitializeComponent();
-	}
+		BindingContext = new CifrasyLetras();
+        Content = new VerticalStackLayout()
+        {
+            Children = {
+                //numAdivinar
+                new Label().Font(size:20).Size(65,50).CenterHorizontal()
+                    .Bind(Label.TextProperty, nameof(CifrasyLetras.NumAdivinar)),
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+                //Numeros
+                new CollectionView() {
+                    ItemTemplate = new DataTemplate(() => 
+                         new Label().Font(size:20)
+                            .Bind(Label.TextProperty).Margin(10,0)
+                    ),
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+                    ItemsLayout = LinearItemsLayout.Horizontal,
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+                }.Size(250,50)
+                 .Bind(CollectionView.ItemsSourceProperty, nameof(CifrasyLetras.Numeros)),
+
+
+                //Operaciones
+                new Entry().Font(size:20).Size(250, 50).CenterHorizontal()
+                    .Bind(Entry.TextProperty, nameof(CifrasyLetras.Operaciones), BindingMode.OneWayToSource)
+                    .Bind(Entry.ReturnCommandProperty, nameof(CifrasyLetras.comprobarResultadoCommand)),
+                    
+
+
+                //Resultado                
+                new Entry().Font(size:20).Size(75, 50).CenterHorizontal()
+                    .Bind(Entry.TextProperty, nameof(CifrasyLetras.Resultado), BindingMode.OneWayToSource)
+                    .Bind(Entry.ReturnCommandProperty, nameof(CifrasyLetras.comprobarResultadoCommand)),
+
+
+                //Cueenta Atras                
+                new Entry().Font(size:20).Size(50).CenterHorizontal()
+                    .Bind(Entry.TextProperty, nameof(CifrasyLetras.CuentaAtras))
+                    
+                    
+
+            }
+
+        }.Center();
+    }
+
+
 }
 
 
