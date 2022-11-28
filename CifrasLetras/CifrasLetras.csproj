@@ -52,12 +52,17 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="2.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.3.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.4.0" />
+		<PackageReference Include="RAE.NET" Version="1.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="CommunityToolkit.Maui.Markup" />
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="Microsoft.CodeAnalysis.CSharp.Scripting" />
+	  <None Remove="RAE.NET" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="Letras.cs" />
 	</ItemGroup>
 </Project>
