@@ -18,7 +18,7 @@ namespace CifrasLetras
 
         public CifrasyLetras()
         {
-            ///Timer
+            //Timer
 			timer = new(1000);
 
 
